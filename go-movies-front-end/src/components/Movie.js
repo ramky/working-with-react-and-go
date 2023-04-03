@@ -13,7 +13,9 @@ const Movie = () => {
   return (
       <div>
       <h2>Movie: {movie.title}</h2>
-        <hr />
+      <small><em>{movie.release_date}, {movie.runtime} minutes, Rated: {movie.mpaa_rating}</em></small>
+      <hr />
+      <p>{movie.description}</p>
       </div>
   )
 }
