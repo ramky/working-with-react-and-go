@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
 
 function App() {
+  const [jwtToken, setJwtToken] = useState("abcd")
   return (
     <div className="container">
       <div className="row">
@@ -9,7 +11,10 @@ function App() {
           <h1 className="mt-3">Go watch a movie!</h1>
         </div>
         <div className="col text-end">
-          <Link to="/login"><span className="badge bg-success">Login</span></Link>
+          {jwtToken === ""
+            ? <Link to="/login"><span className="badge bg-success">Login</span></Link>
+            : <a href="#!"><span className="badge bg-danger">Logout</span></a>
+          }
         </div>
         <hr className="md-3"></hr>
       </div>
@@ -21,9 +26,13 @@ function App() {
               <Link to="/" className="list-group-item list-group-item-action">Home</Link>
               <Link to="/movies" className="list-group-item list-group-item-action">Movies</Link>
               <Link to="/genres" className="list-group-item list-group-item-action">Genres</Link>
-              <Link to="/admin/movies/0" className="list-group-item list-group-item-action">Add Movie</Link>
-              <Link to="/manage-catalog" className="list-group-item list-group-item-action">Manage Catalog</Link>
-              <Link to="/graphql" className="list-group-item list-group-item-action">GraphQL</Link>
+              {jwtToken !== "" &&
+                <>
+                  <Link to="/admin/movies/0" className="list-group-item list-group-item-action">Add Movie</Link>
+                  <Link to="/manage-catalog" className="list-group-item list-group-item-action">Manage Catalog</Link>
+                  <Link to="/graphql" className="list-group-item list-group-item-action">GraphQL</Link>
+                </>
+              }
             </div>
           </nav>
         </div>
