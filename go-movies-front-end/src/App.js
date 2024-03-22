@@ -3,7 +3,7 @@ import { Link, Outlet } from 'react-router-dom';
 
 
 function App() {
-  const [jwtToken, setJwtToken] = useState("abcd")
+  const [jwtToken, setJwtToken] = useState("")
   return (
     <div className="container">
       <div className="row">
@@ -37,7 +37,9 @@ function App() {
           </nav>
         </div>
         <div className="col-md-10">
-          <Outlet />
+          <Outlet context={{
+            jwtToken, setJwtToken,
+          }} />
         </div>
       </div>
     </div>
